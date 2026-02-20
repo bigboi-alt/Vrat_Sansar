@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪷 व्रत संसार - Vrat Sansar</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Tiro+Devanagari+Hindi:wght@400&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ SPLASH SCREEN ============ -->
+<div id="splash" class="splash">
+    <div class="splash-petals">
+        <span class="sp sp1">🌸</span><span class="sp sp2">🌺</span>
+        <span class="sp sp3">🌸</span><span class="sp sp4">🌺</span>
+        <span class="sp sp5">🌸</span><span class="sp sp6">🌺</span>
+        <span class="sp sp7">🌸</span><span class="sp sp8">🌺</span>
+        <span class="sp sp9">🌸</span><span class="sp sp10">🌺</span>
+        <span class="sp sp11">🌸</span><span class="sp sp12">🌺</span>
+        <span class="sp sp13">🌸</span><span class="sp sp14">🌺</span>
+        <span class="sp sp15">🌸</span><span class="sp sp16">🌺</span>
+    </div>
+    <div class="splash-rings">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+    </div>
+    <div class="splash-center">
+        <div class="lotus-anim">
+            <div class="lotus-layer l1"><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div></div>
+            <div class="lotus-layer l2"><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div></div>
+            <div class="lotus-core"></div>
+        </div>
+        <h1 class="splash-title">व्रत संसार</h1>
+        <p class="splash-sub">Vrat Sansar</p>
+        <p class="splash-tag">— Your Sacred Fasting Companion —</p>
+        <div class="splash-diyas">
+            <span class="diya-wrap"><span class="flame"></span>🪔</span>
+            <span class="diya-wrap"><span class="flame"></span>🪔</span>
+        </div>
+        <button id="enterBtn" class="enter-btn" aria-label="Enter App">
+            <span>🙏</span> Enter Sacred Space <span>🙏</span>
+        </button>
+    </div>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div id="app" class="app hidden">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-brand">
+            <span class="brand-icon">🪷</span>
+            <div>
+                <h1 class="brand-hi">व्रत संसार</h1>
+                <span class="brand-en">Vrat Sansar</span>
+            </div>
+        </div>
+        <nav class="nav" id="nav">
+            <button class="nav-btn active" data-tab="home"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+            <button class="nav-btn" data-tab="wiki"><span class="nav-icon">📖</span><span class="nav-label">Wiki</span></button>
+            <button class="nav-btn" data-tab="calendar"><span class="nav-icon">📅</span><span class="nav-label">Calendar</span></button>
+            <button class="nav-btn" data-tab="facts"><span class="nav-icon">✨</span><span class="nav-label">Facts</span></button>
+        </nav>
+        <div class="header-actions">
+            <button class="lang-toggle" id="langToggle" title="Translate">
+                <span id="langIcon">🇮🇳</span>
+                <span id="langText">हिंदी</span>
+            </button>
+            <button class="mobile-menu" id="mobileMenu">☰</button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav hidden" id="mobileNav">
+        <button class="nav-btn active" data-tab="home">🏠 Home</button>
+        <button class="nav-btn" data-tab="wiki">📖 Wiki</button>
+        <button class="nav-btn" data-tab="calendar">📅 Calendar</button>
+        <button class="nav-btn" data-tab="facts">✨ Facts</button>
+    </nav>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast hidden">
+        <span class="toast-icon">🔔</span>
+        <span class="toast-msg" id="toastMsg"></span>
+        <button class="toast-close" id="toastClose">&times;</button>
+    </div>
+
+    <!-- ======== HOME ======== -->
+    <main id="tab-home" class="tab active">
+        <section class="hero-section">
+            <div class="hero-card glass">
+                <div class="hero-top">
+                    <h2 class="section-title" data-hi="🙏 आज का व्रत" data-en="🙏 Today's Vrat">🙏 आज का व्रत</h2>
+                    <span class="today-date" id="todayDate"></span>
+                </div>
+                <div id="todayVrats" class="today-grid"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" data-hi="🗓️ इस सप्ताह आने वाले व्रत" data-en="🗓️ Upcoming This Week">🗓️ इस सप्ताह आने वाले व्रत</h2>
+            <div id="weeklyVrats" class="scroll-row"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" data-hi="📿 इस महीने का विशेष" data-en="📿 This Month's Special">📿 इस महीने का विशेष</h2>
+            <div id="monthSpecial" class="month-card glass"></div>
+        </section>
+
+        <section class="section">
+            <div class="stats-row">
+                <div class="stat glass"><span class="stat-num" id="statFollowed">0</span><span class="stat-lbl" data-hi="व्रत फॉलो किए" data-en="Vrats Followed">व्रत फॉलो किए</span></div>
+                <div class="stat glass"><span class="stat-num" id="statUpcoming">0</span><span class="stat-lbl" data-hi="इस माह आने वाले" data-en="Upcoming This Month">इस माह आने वाले</span></div>
+                <div class="stat glass"><span class="stat-num" id="statTotal">0</span><span class="stat-lbl" data-hi="डेटाबेस में व्रत" data-en="Total Vrats">डेटाबेस में व्रत</span></div>
+                <div class="stat glass"><span class="stat-num" id="statCompleted">0</span><span class="stat-lbl" data-hi="व्रत पूरे किए" data-en="Fasts Completed">व्रत पूरे किए</span></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======== WIKI ======== -->
+    <main id="tab-wiki" class="tab">
+        <section class="section">
+            <div class="wiki-head">
+                <h2 class="section-title" data-hi="📖 व्रत विकी" data-en="📖 Vrat Wiki">📖 व्रत विकी</h2>
+                <p class="wiki-sub" data-hi="सभी हिंदू व्रतों की जानकारी, तिथियां और महत्व" data-en="Explore all Hindu Vrats, dates and significance">सभी हिंदू व्रतों की जानकारी, तिथियां और महत्व</p>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="wikiSearch" class="search-input" placeholder="Search vrats... (Ekadashi, Navratri, Karva Chauth...)">
+                <button id="searchClear" class="search-clear hidden">&times;</button>
+            </div>
+            <div class="filters" id="filters">
+                <button class="chip active" data-filter="all">All</button>
+                <button class="chip" data-filter="weekly">Weekly</button>
+                <button class="chip" data-filter="monthly">Monthly</button>
+                <button class="chip" data-filter="annual">Annual</button>
+                <button class="chip" data-filter="special">Special Period</button>
+            </div>
+            <div id="wikiGrid" class="wiki-grid"></div>
+        </section>
+    </main>
+
+    <!-- ======== CALENDAR ======== -->
+    <main id="tab-calendar" class="tab">
+        <section class="section">
+            <h2 class="section-title" data-hi="📅 मेरा व्रत कैलेंडर" data-en="📅 My Vrat Calendar">📅 मेरा व्रत कैलेंडर</h2>
+            <p class="cal-sub" data-hi="दिन पर टैप करके उपस्थिति लगाएं ✅" data-en="Tap a day to mark attendance ✅">दिन पर टैप करके उपस्थिति लगाएं ✅</p>
+
+            <div class="cal-controls">
+                <button class="cal-arrow" id="calPrev">◀</button>
+                <h3 id="calTitle" class="cal-title"></h3>
+                <button class="cal-arrow" id="calNext">▶</button>
+            </div>
+
+            <div class="cal-grid glass">
+                <div class="cal-header-row">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div id="calDays" class="cal-body"></div>
+            </div>
+
+            <div class="legend-row">
+                <span class="legend"><span class="dot dot-today"></span> <span data-hi="आज" data-en="Today">आज</span></span>
+                <span class="legend"><span class="dot dot-vrat"></span> <span data-hi="व्रत" data-en="Vrat Day">व्रत</span></span>
+                <span class="legend"><span class="dot dot-follow"></span> <span data-hi="फॉलो" data-en="Followed">फॉलो</span></span>
+                <span class="legend"><span class="dot dot-done"></span> <span data-hi="पूरा किया" data-en="Completed">पूरा किया</span></span>
+            </div>
+
+            <div class="followed-section">
+                <h3 class="section-title-sm" data-hi="🔔 मेरे फॉलो किए व्रत" data-en="🔔 My Followed Vrats">🔔 मेरे फॉलो किए व्रत</h3>
+                <div id="followedList"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======== FACTS ======== -->
+    <main id="tab-facts" class="tab">
+        <section class="section">
+            <h2 class="section-title" data-hi="✨ कथाएं और तथ्य" data-en="✨ Facts & Stories">✨ कथाएं और तथ्य</h2>
+            <div class="fact-cats" id="factCats">
+                <button class="chip active" data-cat="why" data-hi="🤔 क्यों रखते हैं व्रत" data-en="🤔 Why We Fast">🤔 क्यों रखते हैं व्रत</button>
+                <button class="chip" data-cat="science" data-hi="🔬 वैज्ञानिक लाभ" data-en="🔬 Science Benefits">🔬 वैज्ञानिक लाभ</button>
+                <button class="chip" data-cat="stories" data-hi="📜 व्रत कथाएं" data-en="📜 Vrat Kathas">📜 व्रत कथाएं</button>
+                <button class="chip" data-cat="tips" data-hi="💡 व्रत के टिप्स" data-en="💡 Fasting Tips">💡 व्रत के टिप्स</button>
+                <button class="chip" data-cat="didyouknow" data-hi="🧠 क्या आप जानते हैं" data-en="🧠 Did You Know">🧠 क्या आप जानते हैं</button>
+            </div>
+            <div id="factsGrid" class="facts-grid"></div>
+            <div class="quote-box glass">
+                <h3 data-hi="🪷 आज का आध्यात्मिक विचार" data-en="🪷 Today's Spiritual Thought">🪷 आज का आध्यात्मिक विचार</h3>
+                <blockquote id="dailyQuote"></blockquote>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-box glass">
+            <button class="modal-x" id="modalClose">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>🪷 व्रत संसार — Vrat Sansar 🪷</p>
+        <p class="footer-sm">Made with 🙏 and devotion • Dates are approximate per Hindu Panchang</p>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
